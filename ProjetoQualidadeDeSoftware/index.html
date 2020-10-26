@@ -8,14 +8,11 @@
     <title>Projeto Qualidade de Software</title>
 </head>
 <body>
-    <div class="artifacts">
-        <input type="button" name="add" id="verificantionArticle" value="Adicionar">
-        <input type="button" name="excluir" id="btnDelete" value="Excluir">
-        <input type="button" name="editar" id="btnEdit" value="Editar">
-    </div>
-
-    <div class="select">
-        <select>
+  <table>
+    <tr>
+      <td>
+        <div class="select">
+          <select>
             <option>DRE 1</option>
             <option>DRE 2</option>
             <option>DRE 3</option>
@@ -23,27 +20,75 @@
             <option>DRE 5</option>
             <option>DRE 6</option>
             <option>DRE 7</option>
-        </select>
-    </div>
-
-    <div>
+          </select>
+        </div>
+      </td>
+      <td>
+        <div class="artifacts">
+          <input type="button" name="add" id="btnAdd" value="Adicionar">
+          
+        </div>
+      </td>
+    </tr>
+  </table>
         <table class="tabelaRegistros">
             <tr>
-                <td>DRE:</td>
+                <td>ID:</td>
+                <td>Não Conformidade:</td>
+                <td>Sim</td>
+                <td>Não</td>
+                <td>Não aplicável</td>
                 <td>Responsável:</td>
                 <td>Observações:</td>
+                <td>Data inicial:</td>
+                <td>Data final:</td>
+                <td>Data encerramento:</td>
+                <td>Opções</td>
             </tr>
             <tr>
-                <td>teste</td>
-                <td>teste</td>
-                <td>teste</td>
+                <td>0</td>
+                <td>Pergunta</td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td>Batman</td>
+                <td>Foi feita com os olhos</td>
+                <td>10/10/2010</td>
+                <td>20/10/2010</td>
+                <td>15/10/2010</td>
+                <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
+                <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
             </tr>
-            <tr>
-                <td>teste</td>
-                <td>teste</td>
-                <td>teste</td>
+           <tr>
+                <td>0</td>
+                <td>Pergunta</td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td>Batman</td>
+                <td>Foi feita com os olhos</td>
+                <td>10/10/2010</td>
+                <td>20/10/2010</td>
+                <td>15/10/2010</td>
+                <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
+                 <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
+            </tr>
+           <tr>
+                <td>0</td>
+                <td>Pergunta</td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
+                <td>Batman</td>
+                <td>Foi feita com os olhos</td>
+                <td>10/10/2010</td>
+                <td>20/10/2010</td>
+                <td>15/10/2010</td>
+                <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
+                 <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
             </tr>
         </table>
     </div>
+  </div>
 </body>
 </html>
