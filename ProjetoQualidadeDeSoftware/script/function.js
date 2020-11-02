@@ -2,30 +2,40 @@
 window.onload = function(){
     let artefato = undefined;
     let dre = undefined;
+
+    let totPositivoDre = 21;
+    let totQntDre = 21;
+    let porcentDre =(totPositivoDre * 100) / totQntDre;
+
+    let totPositivoArt = 21;
+    let totQntArt = 21;
+    let porcentArt = (totPositivoArt * 100) / totQntArt;
 };
 //Define o artefato o qual o usuário quer utilizar
 function defineArtefato(){
     let art = window.document.getElementById("select-art");
     let retorno = art.options[art.selectedIndex].value;
-    window.alert(retorno);
     artefato = String(retorno);
 };
 function defineDre(){
     let selectDre = window.document.getElementById("select-dre");
     let tipoDre = selectDre.options[selectDre.selectedIndex].value;
-    window.alert(tipoDre);
     dre = String(tipoDre);
-}
+};
 function adicionaInfo(){
     let tabela = window.document.getElementById("tabelaConteudo2");
     let conteudo = verificaDRE(dre, artefato);
     tabela.innerHTML = conteudo;
 
 };
+function contabilizar(id){
+
+}
 function verificaDRE(dre, artefact){
     String(dre);
     String(artefact);
     let retorno = "";
+
     if(artefact === "Interface"){
         switch(dre){
             case "DRE1":
@@ -37,9 +47,9 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As interfaces internas e externas necessárias para o projeto são identificadas?</td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='InterfaceDre1' id='btnCheckDre1' value='Sim' onclick='contabilizar(btnCheckDre1)'></td>";
+                retorno += "<td><input type='checkbox' name='InterfaceDre2' id='btnCheck' value='Não'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheck' value='NA'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As interfaces estão acordates as necessidades do usuário?</td>";
@@ -223,7 +233,7 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>O broduct backlog possui a identificação dos stakeholders?</td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='productBacklogDre1' id='btnCheckDre1' value='Checar' onclick='contabilizar(productBacklogDre1)'></td>";
                 retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
                 retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
                 retorno += "</tr>";
