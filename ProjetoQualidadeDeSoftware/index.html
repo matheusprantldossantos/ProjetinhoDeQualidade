@@ -9,31 +9,44 @@
 </head>
 <body>
   <table>
+      <tr>
+        <td>
+          <div class="select-artefato">
+            <select onchange="defineArtefato()" id="select-art">
+              <option value="">&nbsp;Selecione Artefato&nbsp;&nbsp;</option>
+              <option value="Product Backlog"> Product Backlog </option>
+              <option value="Interface"> Interface </option>
+            </select>
+          </div>
+        </td>
+      </tr>
+  </table>
+  <table>
     <tr>
       <td>
-        <div class="select">
-          <select>
-            <option>DRE 1</option>
-            <option>DRE 2</option>
-            <option>DRE 3</option>
-            <option>DRE 4</option>
-            <option>DRE 5</option>
-            <option>DRE 6</option>
-            <option>DRE 7</option>
+        <div class="selectDre">
+          <select id="select-dre" onchange="defineDre()">
+            <option value="">&nbsp;Selecione DRE&nbsp;&nbsp;</option>
+            <option value="DRE1">DRE 1</option>
+            <option value="DRE2">DRE 2</option>
+            <option value="DRE3">DRE 3</option>
+            <option value="DRE4">DRE 4</option>
+            <option value="DRE5">DRE 5</option>
+            <option value="DRE6">DRE 6</option>
+            <option value="DRE7">DRE 7</option>
           </select>
         </div>
       </td>
       <td>
         <div class="artifacts">
-          <input type="button" name="add" id="btnAdd" value="Adicionar">
+          <input type="button" name="add" id="btnAdd" value="Adicionar" onclick="adicionaInfo()">
           
         </div>
       </td>
     </tr>
   </table>
-        <table class="tabelaRegistros">
+        <table class="tabelaRegistros" id="tabelaConteudo">
             <tr>
-                <td>ID:</td>
                 <td>Não Conformidade:</td>
                 <td>Sim</td>
                 <td>Não</td>
@@ -46,7 +59,6 @@
                 <td>Opções</td>
             </tr>
             <tr>
-                <td>0</td>
                 <td>Pergunta</td>
                 <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
                 <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
@@ -59,34 +71,9 @@
                 <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
                 <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
             </tr>
-           <tr>
-                <td>0</td>
-                <td>Pergunta</td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td>Batman</td>
-                <td>Foi feita com os olhos</td>
-                <td>10/10/2010</td>
-                <td>20/10/2010</td>
-                <td>15/10/2010</td>
-                <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
-                 <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
-            </tr>
-           <tr>
-                <td>0</td>
-                <td>Pergunta</td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td><input type="checkbox" name="checar" id="btnCheck" value="Checar"></td>
-                <td>Batman</td>
-                <td>Foi feita com os olhos</td>
-                <td>10/10/2010</td>
-                <td>20/10/2010</td>
-                <td>15/10/2010</td>
-                <td><input type="button" name="excluir" id="btnDelete" value="Excluir"></td>
-                 <td><input type="button" name="Confirmar" id="btnConf" value="Confirmar"></td>
-            </tr>
+            <table class="tabelaRegistros2" id="tabelaConteudo2">
+
+            </table>
         </table>
     </div>
   </div>

@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Resultados>
-    <DRE>
-        <descricao> O propósito do processo Desenvolvimento de Requisitos é definir os requisitos do cliente,
-         do produto e dos componentes do produto. </descricao>
-        <R1> As necessidades, expectativas e restrições do cliente, tanto do produto quanto de suas interfaces, são identificadas;</R1>
-        <R2> Um conjunto definido de requisitos do cliente é especificado e priorizado a partir das necessidades,
-         expectativas e restrições identificadas; </R2>
-        <R3> . Um conjunto de requisitos funcionais e não-funcionais, do produto e dos componentes do produto que descrevem a solução do problema a ser resolvido,
-         é definido e mantido a partir dos requisitos do cliente; </R3>
-        <R4> Os requisitos funcionais e não-funcionais de cada componente do produto são refinados, elaborados e alocados.
-         Interfaces internas e externas do produto e de cada componente do produto são definidas;</R4>
-        <R5> Conceitos operacionais e cenários são desenvolvidos;</R5>
-        <R6> Os requisitos são analisados, usando critérios definidos,
-         para balancear as necessidades dos interessados com as restrições existentes;</R6>
-        <R7> Os requisitos são validados.</R7>
-    </DRE>
-</Resultados>
+<PerguntasPB>
+    
+</PerguntasPB>
