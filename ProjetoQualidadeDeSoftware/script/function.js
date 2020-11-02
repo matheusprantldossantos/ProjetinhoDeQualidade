@@ -3,14 +3,15 @@ window.onload = function(){
     let artefato = undefined;
     let dre = undefined;
 
-    let totPositivoDre = 21;
-    let totQntDre = 21;
-    let porcentDre =(totPositivoDre * 100) / totQntDre;
+    let totPositivoPB = 21;
+    let totQntPB = 21;
+    let porcentPB = Number.parseInt((totPositivoPB * 100) / totQntPB);
+    
 
     let totPositivoArt = 21;
     let totQntArt = 21;
-    let porcentArt = (totPositivoArt * 100) / totQntArt;
-};
+    let porcentArt = Number.parseInt((totPositivoArt * 100) / totQntArt);
+};  
 //Define o artefato o qual o usuário quer utilizar
 function defineArtefato(){
     let art = window.document.getElementById("select-art");
@@ -28,8 +29,24 @@ function adicionaInfo(){
     tabela.innerHTML = conteudo;
 
 };
-function contabilizar(id){
-
+function contabilizar(id, name){
+    let resultado = window.document.getElementById(id);
+    let nome = name;
+    alert(nome);
+    let valor = String(resultado.value);
+    if(valor == 'sim'){
+        let a = 0;
+    }
+    else if(valor == 'nao'){
+        totPositivoPB--;
+    }
+    else if(valor == 'NA'){
+        totPositivoPB--;
+        totQntPB--;
+    }
+    else{
+        let b = 0;
+    }
 }
 function verificaDRE(dre, artefact){
     String(dre);
@@ -47,21 +64,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As interfaces internas e externas necessárias para o projeto são identificadas?</td>";
-                retorno += "<td><input type='checkbox' name='InterfaceDre1' id='btnCheckDre1' value='Sim' onclick='contabilizar(btnCheckDre1)'></td>";
-                retorno += "<td><input type='checkbox' name='InterfaceDre2' id='btnCheck' value='Não'></td>";
-                retorno += "<td><input type='checkbox' name='Interface' id='btnCheck' value='NA'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_1' value='sim' onclick='contabilizar(\"btnCheckDre1_1\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_2' value='nao' onclick='contabilizar(\"btnCheckDre1_2\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_3' value='NA' onclick='contabilizar(\"btnCheckDre1_3\", \"Interface\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As interfaces estão acordates as necessidades do usuário?</td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_4' value='sim' onclick='contabilizar('btnCheckDre2_1')'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_5' value='nao' onclick='contabilizar('btnCheckDre2_2')'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_6' value='NA' onclick='contabilizar('btnCheckDre2_3')'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As restrições relacionados ao cenário de negócio  exercem influência nas interfaces?</td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_7' value='sim' onclick='contabilizar('btnCheckDre1_7')'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_8' value='nao' onclick='contabilizar('btnCheckDre1_8')'></td>";
+                retorno += "<td><input type='checkbox' name='Interface' id='btnCheckDre1_9' value='NA' onclick='contabilizar('btnCheckDre1_9')'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE2":
@@ -233,15 +250,15 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>O broduct backlog possui a identificação dos stakeholders?</td>";
-                retorno += "<td><input type='checkbox' name='productBacklogDre1' id='btnCheckDre1' value='Checar' onclick='contabilizar(productBacklogDre1)'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='productBacklogDre1' id='btnCheckDre1' value='sim' onclick='contabilizar(btnCheckDre1)'></td>";
+                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='nao'></td>";
+                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='NA'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As principais expectativas da persona(stakeholder) estão definidas e agrupadas?</td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
-                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='Checar'></td>";
+                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='sim'></td>";
+                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='nao'></td>";
+                retorno += "<td><input type='checkbox' name='checar' id='btnCheck' value='NA'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As features relacionadas às personas foram determinadas?</td>";
