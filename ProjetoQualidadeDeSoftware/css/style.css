@@ -37,8 +37,51 @@ body{
     left : 80%;
     top: 85%;
 }
-.position-text{
+.positio-tabela{
     position: absolute;
     left: 20%;
-    top: 40%
+    top: 40%;
 }
+/*.position-text0{
+    position: absolute;
+    left: 20%;
+    top: 40%;
+}
+.position-text1{
+    position: absolute;
+    left: 20%;
+    top: 45%;
+}
+.position-text2{
+    position: absolute;
+    left: 20%;
+    top: 50%;
+}
+.position-text3{
+    position: absolute;
+    left: 20%;
+    top: 55%;
+    
+}
+.position-indicator1{
+    position: absolute;
+    left: 100%;
+    top: 40%;
+}
+
+.position-mark1{
+    position: absolute;
+    left: 70%;
+    top: 45%;
+}
+.position-mark2{
+    position: absolute;
+    left: 75%;
+    top: 50%;
+}
+.position-mark3{
+    position: absolute;
+    left: 80%;
+    top: 55%;
+
+}*/
