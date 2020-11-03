@@ -8,9 +8,10 @@
     <title>Projeto Qualidade de Software</title>
 </head>
 <body>
-  <table>
+  <table class="position-artifact">
       <tr>
         <td>
+          Primeiro selecione o artefato:
           <div class="select-artefato">
             <select onchange="defineArtefato()" id="select-art">
               <option value="">&nbsp;Selecione Artefato&nbsp;&nbsp;</option>
@@ -21,10 +22,11 @@
         </td>
       </tr>
   </table>
-  <table>
+  <table class="position-dre">
     <tr>
       <td>
-        <div class="selectDre">
+        Segudamente escolha um artefato:
+        <div>
           <select id="select-dre" onchange="defineDre()">
             <option value="">&nbsp;Selecione DRE&nbsp;&nbsp;</option>
             <option value="DRE1">DRE 1</option>
@@ -40,7 +42,6 @@
       <td>
         <div class="artifacts">
           <input type="button" name="add" id="btnAdd" value="Adicionar" onclick="adicionaInfo()">
-          
         </div>
       </td>
     </tr>
@@ -50,6 +51,6 @@
   </div>
   <div id="notaFinal">
   </div>
-  <input type="button" id="mostraResultado" value="Avaliar" onclick="avaliar()">
+  <input type="button" id="mostraResultado" value="Avaliar" onclick="avaliar()" class="position-avaliar">
 </body>
 </html>

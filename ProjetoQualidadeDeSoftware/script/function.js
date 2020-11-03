@@ -116,7 +116,7 @@ function avaliar(){
     else if(artefato == "Product Backlog"){
         let calc = Number.parseFloat((totPositivoPB * 100) / totQntPB); 
         let falta = Number.parseInt(TOTALPB - qntRespostaPB);
-        if(falta == 0){
+        if(falta <= 0){
             localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que todas as perguntas foram respondidas</div>`;
         }
         else{
