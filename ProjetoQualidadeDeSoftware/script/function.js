@@ -1,16 +1,20 @@
 //Comentários para poder subir o arquivo no GitHub
+TOTALPB = 21;
+TOTALINTER = 21;
+
+let totPositivoPB = 21;
+let totQntPB = 21;
+
+let totPositivoInter = 21;
+let totQntInter = 21;
+
+let qntRespostaPB = 0;
+let qntRespostaInter = 0;
+
 window.onload = function(){
     let artefato = undefined;
     let dre = undefined;
 
-    let totPositivoPB = 21;
-    let totQntPB = 21;
-    let porcentPB = Number.parseInt((totPositivoPB * 100) / totQntPB);
-    
-
-    let totPositivoArt = 21;
-    let totQntArt = 21;
-    let porcentArt = Number.parseInt((totPositivoArt * 100) / totQntArt);
 };  
 //Define o artefato o qual o usuário quer utilizar
 function defineArtefato(){
@@ -29,24 +33,99 @@ function adicionaInfo(){
     tabela.innerHTML = conteudo;
 
 };
+function realizarCalculo(){
+
+}
 function contabilizar(id, name){
     let resultado = window.document.getElementById(id);
     let nome = name;
-    alert(nome);
     let valor = String(resultado.value);
-    if(valor == 'sim'){
-        let a = 0;
-    }
-    else if(valor == 'nao'){
-        totPositivoPB--;
-    }
-    else if(valor == 'NA'){
-        totPositivoPB--;
-        totQntPB--;
+    if(resultado.checked == true){
+        if(valor == 'sim' && nome == 'Product Backlog'){
+            qntRespostaPB++;
+        }
+        else if(valor == 'sim' && nome == 'Interface'){
+            qntRespostaInter++;
+        }
+        else if(valor == 'nao' && nome == 'Interface'){
+            totPositivoInter--;
+            qntRespostaInter++;
+        }
+        else if(valor == 'nao' && nome == 'Product Backlog'){
+            totPositivoPB--;
+            qntRespostaPB++;
+        }
+        else if(valor == 'NA' && nome == 'Product Backlog'){
+            totPositivoPB--;
+            totQntPB--;
+            qntRespostaPB++;
+        }
+        else if(valor == 'NA' && nome == 'Interface'){
+            totPositivoInter--;
+            totQntInter--;
+            qntRespostaInter++;
+        }
+        else{
+            alert("Ocorreu um erro nas escolhas ou de artefato ou de DRE");
+        }
     }
     else{
-        let b = 0;
+        if(valor == 'sim' && nome == 'Product Backlog'){
+            qntRespostaPB--;
+        }
+        else if(valor == 'sim' && nome == 'Interface'){
+            qntRespostaInter--;
+        }
+        else if(valor == 'nao' && nome == 'Interface'){
+            totPositivoInter++;
+            qntRespostaInter--;
+        }
+        else if(valor == 'nao' && nome == 'Product Backlog'){
+            totPositivoPB++;
+            qntRespostaPB--;
+        }
+        else if(valor == 'NA' && nome == 'Product Backlog'){
+            totPositivoPB++;
+            totQntPB++;
+            qntRespostaPB--;
+        }
+        else if(valor == 'NA' && nome == 'Interface'){
+            totPositivoInter++;
+            totQntInter++;
+            qntRespostaInter--;
+        }
+        else{
+            alert("Ocorreu um erro nas escolhas ou de artefato ou de DRE");
+        }
     }
+}
+function avaliar(){
+    let localParaAvaliacao = window.document.getElementById("notaFinal");
+    if(artefato == undefined){
+        alert("Escolha um artefato para calculo");
+    }
+    else if(artefato == "Interface"){
+        let calc = Number.parseFloat((totPositivoInter * 100) / totQntInter); 
+        let falta = Number.parseInt(TOTALINTER - qntRespostaInter);
+        if(falta == 0){
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que todas as perguntas foram respondidas</div>`;
+        }
+        else{
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que ainda falta responder ${falta} pergunta(s)</div>`;
+        }
+    }
+    else if(artefato == "Product Backlog"){
+        let calc = Number.parseFloat((totPositivoPB * 100) / totQntPB); 
+        let falta = Number.parseInt(TOTALPB - qntRespostaPB);
+        if(falta == 0){
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que todas as perguntas foram respondidas</div>`;
+        }
+        else{
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que ainda falta responder ${falta} pergunta(s)</div>`;
+        }
+    }
+
+
 }
 function verificaDRE(dre, artefact){
     String(dre);
@@ -250,21 +329,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>O broduct backlog possui a identificação dos stakeholders?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As principais expectativas da persona(stakeholder) estão definidas e agrupadas?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As features relacionadas às personas foram determinadas?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre1_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre1_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre1_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre1_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE2":
@@ -276,21 +355,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Existe separação de funcionalidades por usuário no projeto?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>A principal feature da persona soluciona seus probremas e atende as suas expectativas?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As funcionalidades correspondestes a feature a viabilizam?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre2_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre2_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre2_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre2_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE3":
@@ -302,21 +381,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Existe a elaboração de user stories para cada feature do projeto?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Existe a descrição de cada feature do sistema?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As funcionalidades das features relacionam-se com questões cosméticas?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre3_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre3_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre3_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre3_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE4":
@@ -328,21 +407,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Os requisitos funcionais foram refinados, elaborados e alocados no product backlog?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Os requisitos não-funcionais foram refinados, elaborados e alocados no product backlog?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As interfaces internas e externas foram definidas?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre4_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre4_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre4_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre4_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE5":
@@ -354,21 +433,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As funcionalidades e features esboçam as condições de mercado do usuário?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";    
                 retorno += "<td>Os cenários de mercado foram identificados?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Os conceitos operacionais estão relacionados com os cenários de mercado dos stakeholders?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre5_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre5_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre5_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre5_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE6":
@@ -380,21 +459,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Os critérios das features e funcionalidades do sistemas estão devidamente definidos em acordo com as necessidades do usuário?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";    
                 retorno += "<td>Os requisitos estão sendo analisados de acordo com a necessidade de cada interessado?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Estão sendo implantadas as restrições para cada interessado?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre6_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre6_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre6_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre6_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
             case "DRE7":
@@ -406,21 +485,21 @@ function verificaDRE(dre, artefact){
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>As funcionalidades foram validadas de acordo com as especificações?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_1_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_2_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_3_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_1_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_1_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_2_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_2_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_3_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_3_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";    
                 retorno += "<td>As especificações para a validação das features foram criadas priorizadas a partir das necesidades e expectativas do usuário? </td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_4_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_5_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_6_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_4_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_4_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_5_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_5_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_6_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_6_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 retorno += "<tr>";
                 retorno += "<td>Foram implantadas formas de validação das funcionalidades presentes nas features?</td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_7_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_8_PB\", \"Interface\")'></td>";
-                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_9_PB\", \"Interface\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_7_PB' value='sim' onclick='contabilizar(\"btnCheckDre7_7_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_8_PB' value='nao' onclick='contabilizar(\"btnCheckDre7_8_PB\", \"Product Backlog\")'></td>";
+                retorno += "<td><input type='checkbox' name='Product Backlog' id='btnCheckDre7_9_PB' value='NA' onclick='contabilizar(\"btnCheckDre7_9_PB\", \"Product Backlog\")'></td>";
                 retorno += "</tr>";
                 break;
         }
