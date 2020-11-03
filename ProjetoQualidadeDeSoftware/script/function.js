@@ -33,9 +33,7 @@ function adicionaInfo(){
     tabela.innerHTML = conteudo;
 
 };
-function realizarCalculo(){
 
-}
 function contabilizar(id, name){
     let resultado = window.document.getElementById(id);
     let nome = name;
@@ -99,6 +97,7 @@ function contabilizar(id, name){
         }
     }
 }
+//VERIFICAR SE É IGUAL A 0!
 function avaliar(){
     let localParaAvaliacao = window.document.getElementById("notaFinal");
     if(artefato == undefined){
