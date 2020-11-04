@@ -1,10 +1,15 @@
 body{
-    background-color: black;
-    color: gold;
+    background-color: white;
+    color: black;
+    background-image: url("../img/Exemplo_HUD.webp");
+}
+.titulo{
+    position: absolute;
+    left: 35%;
 }
 
 .artifacts{
-    background-color: aqua;
+    background-color: transparent;
 }
 
 .select {
@@ -17,20 +22,24 @@ body{
     padding: 3px;
     border-style: solid;
     border-width: 3px;
-    border-color: aqua;
+    border-color: transparent;
 }
 .position-artifact{
     position: absolute;
     left : 7.5%;
     top: 7.5%;
-    background-color: white;
+    background-color: transparent;
 }
 .position-dre{
     position: absolute;
     left : 7.5%;
     top: 25%;
-    background-color: white;
+    background-color: transparent;
     
+}
+.adicionar{
+    text-align: end;
+    align-content: flex-end;
 }
 .position-avaliar{
     position: absolute;
@@ -41,47 +50,14 @@ body{
     position: absolute;
     left: 20%;
     top: 40%;
+    border: double;
 }
-/*.position-text0{
+.final{
     position: absolute;
-    left: 20%;
-    top: 40%;
-}
-.position-text1{
-    position: absolute;
-    left: 20%;
-    top: 45%;
-}
-.position-text2{
-    position: absolute;
-    left: 20%;
-    top: 50%;
-}
-.position-text3{
-    position: absolute;
-    left: 20%;
-    top: 55%;
-    
-}
-.position-indicator1{
-    position: absolute;
-    left: 100%;
-    top: 40%;
+    top: 85%;
+    left: 25%;
+    background-color: white;
+    border-color: gold;
+    border: double;
 }
 
-.position-mark1{
-    position: absolute;
-    left: 70%;
-    top: 45%;
-}
-.position-mark2{
-    position: absolute;
-    left: 75%;
-    top: 50%;
-}
-.position-mark3{
-    position: absolute;
-    left: 80%;
-    top: 55%;
-
-}*/

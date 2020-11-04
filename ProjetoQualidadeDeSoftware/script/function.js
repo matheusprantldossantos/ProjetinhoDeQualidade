@@ -107,20 +107,20 @@ function avaliar(){
         let calc = Number.parseFloat((totPositivoInter * 100) / totQntInter); 
         let falta = Number.parseInt(TOTALINTER - qntRespostaInter);
         if(falta == 0){
-            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que todas as perguntas foram respondidas</div>`;
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de <strong>${calc.toFixed(2)}%</strong> sendo que todas as perguntas foram respondidas</div>`;
         }
         else{
-            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que ainda falta responder ${falta} pergunta(s)</div>`;
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de <strong>${calc.toFixed(2)}%</strong> sendo que ainda falta responder <strong>${falta}</strong> pergunta(s)</div>`;
         }
     }
     else if(artefato == "Product Backlog"){
         let calc = Number.parseFloat((totPositivoPB * 100) / totQntPB); 
         let falta = Number.parseInt(TOTALPB - qntRespostaPB);
         if(falta <= 0){
-            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que todas as perguntas foram respondidas</div>`;
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de <strong>${calc.toFixed(2)}%</strong> sendo que todas as perguntas foram respondidas</div>`;
         }
         else{
-            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de ${calc.toFixed(2)}% sendo que ainda falta responder ${falta} pergunta(s)</div>`;
+            localParaAvaliacao.innerHTML = `<div>A aderência do projeto é de <strong>${calc.toFixed(2)}%</strong> sendo que ainda falta responder <strong>${falta}</strong> pergunta(s)</div>`;
         }
     }
 
